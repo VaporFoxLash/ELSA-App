@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="@drawable/backgall">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableRight="@drawable/ic_person_black_24dp"
+            android:hint=" Name"
+            android:inputType="text"
+            android:textColorHint="#c1c1bf" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableRight="@drawable/ic_email_black_24dp"
+            android:hint=" Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#c1c1bf" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableRight="@drawable/ic_lock_black_24dp"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:textColorHint="#c1c1bf" />
+
+        <EditText
+            android:id="@+id/editTextPasswordRetype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableRight="@drawable/ic_lock_open_black_24dp"
+            android:hint=" Re-type Your Password"
+            android:inputType="textPassword"
+            android:textColorHint="#c1c1bf" />
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btstyle"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="#c1c1bf"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textViewSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="OR"
+            android:textAlignment="center"
+            android:textColor="#c1c1bf"
+            android:textSize="26dp" />
+
+        <Button
+            android:id="@+id/buttonSignin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btstyle"
+            android:text="Sign In"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAllCaps="false"
+            android:textColor="#c1c1bf"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "978202084582",
+    "firebase_url": "https://elsa-9d191.firebaseio.com",
+    "project_id": "elsa-9d191",
+    "storage_bucket": "elsa-9d191.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978202084582:android:a78f6a99da8e0cc7",
+        "android_client_info": {
+          "package_name": "com.example.elsa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978202084582-9pt4qi37nnmmj7idf15tuka09ubjkjjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elsa",
+            "certificate_hash": "042d2c1b5890183782a9e0a82f4eecdb7560ef50"
+          }
+        },
+        {
+          "client_id": "978202084582-bt5u9saijvohg0g72hd4pcpegmjb7b4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJtaA34-HZxHjJWJyAvtuYb95ryQPYeRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978202084582-bt5u9saijvohg0g72hd4pcpegmjb7b4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

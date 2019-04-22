@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu"
+    android:background="@drawable/backm">
+
+    <Button
+        android:id="@+id/btevents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="105dp"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="events"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="105dp"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="request"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="105dp"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="165dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="member"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

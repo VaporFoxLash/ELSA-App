@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RequestsActivity"
+    android:background="@drawable/backgall">
+
+    <Button
+        android:id="@+id/Membership"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="338dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="Membership"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/Constitution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="251dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="Constitution"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/year_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="166dp"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:text="year plan"
+        android:textAlignment="center"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

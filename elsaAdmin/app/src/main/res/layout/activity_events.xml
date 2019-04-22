@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventsActivity"
+    >
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:layout_marginBottom="0dp">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextTopic"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:hint="  Event Topic"
+                android:textColorHint="#ffffff"
+                android:textAlignment="inherit"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/editTextPost"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:hint="  Event Details"
+                android:textColorHint="#ffffff"
+                android:textAlignment="inherit"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/buttonImage"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:background="#ff0c"
+                    android:text="Image"
+                    android:layout_marginRight="5dp"
+                    android:textColor="#ffffff"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/buttonPostEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff0c"
+                    android:textColor="#ffffff"
+                    android:text="Post event"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageViewpost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ListView
+                android:id="@+id/listViewEvents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+            </ListView>
+        </LinearLayout>
+
+
+    <!--</ScrollView>-->
+
+</RelativeLayout>

@@ -29,7 +29,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == bt_member){
-            startActivity(new Intent(this, MemberActivity.class));
+            startActivity(new Intent(this, RegionActivity.class));
         }
 
         if (v == bt_events){

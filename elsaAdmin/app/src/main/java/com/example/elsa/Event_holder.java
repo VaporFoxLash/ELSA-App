@@ -3,37 +3,29 @@ package com.example.elsa;
 import android.graphics.Bitmap;
 
 public class Event_holder {
-    String title;
-    String event_details;
+    String region;
+    String names;
     Bitmap image;
 
-    public Event_holder(Bitmap image, String title, String event_details) {
-        this.title = title;
-        this.event_details = event_details;
-        this.image = image;
+    public Event_holder(String region, String names) {
+        this.region = region;
+        this.names = names;
+//        this.image = image;
     }
 
-    public String getTitle() {
-        return title;
+    public String getRegion() {
+        return region;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
-    public String getEvent_details() {
-        return event_details;
+    public String getNames() {
+        return names;
     }
 
-    public void setEvent_details(String event_details) {
-        this.event_details = event_details;
-    }
-
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setNames(String names) {
+        this.names = names;
     }
 }

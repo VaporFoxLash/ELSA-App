@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageActivity">
+
+    <ProgressBar
+        android:id="@+id/progress_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--&gt;-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbHome"
+        android:layout_width="69dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="-332dp"
+        android:layout_marginBottom="42dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="8dp"
+        android:foregroundGravity="right"
+        android:tooltipText="Home"
+        android:src="@drawable/ic_home_black_24dp"
+        app:pressedTranslationZ="13dp"
+        app:rippleColor="@color/colorPrimaryDark" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbPost"
+        android:layout_width="69dp"
+        android:layout_height="60dp"
+        android:layout_alignRight="@id/fbHome"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="-271dp"
+        android:layout_marginBottom="51dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="8dp"
+        android:foregroundGravity="right"
+        android:src="@drawable/ic_chevron_right_black_24dp"
+        android:tooltipText="Home"
+        app:pressedTranslationZ="13dp"
+        app:rippleColor="@color/colorPrimaryDark" />
+    <!--</RelativeLayout>-->
+
+</RelativeLayout>

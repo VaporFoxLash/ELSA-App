@@ -2,6 +2,7 @@ package com.example.elsa;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -47,8 +48,8 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     private FirebaseAuth firebaseAuth;
     public Spinner spinner;
-    //dropdown items
-    private static final String[] paths = {"PML", "PWL", "YAL", "PYL", "ELCSAMO", "AM", "AW"};
+    //dropdown items "PML", "PWL", "YAL", "PYL", "ELCSAMO", "AM", "AW"
+    private static final String[] paths = {"North", "West", "South", "East"};
     private String TransType;
 
 
@@ -85,7 +86,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
     //a Uri object to store file path
     private Uri filePath;
 
-//    firebase storage reference
+    //    firebase storage reference
     private StorageReference storageReference;
     FirebaseStorage storage;
     FirebaseDatabase database;
@@ -153,25 +154,55 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        TransType = parent.getItemAtPosition(position).toString();
+        ((TextView)spinner.getSelectedView()).setTextColor(Color.WHITE);
+        Log.d("Transaction Type", TransType);
+    }
+
     private void saveUserInformation(){
         String title = editTextTitle.getText().toString();
         String surname = editTextSurname.getText().toString();
         String name = editTextName.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String telephone = editTextTelNo.getText().toString().trim();
-        String IDNumber = editTextId.getText().toString().trim();
+        String idnumber = editTextId.getText().toString().trim();
         String mobileNumber = editTextMobileNumber.getText().toString().trim();
+        String region = TransType;
 
-        UserInformation userInformation = new UserInformation(title, surname, name, IDNumber, mobileNumber, telephone, address);
+//        String title, String surname, String name, String IDNumber,
+//                String mobileNumber, String telephone, String address, String region
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final UserInformation userInformation = new UserInformation();
+        userInformation.setSurname(surname);
+        userInformation.setName(name);
+        userInformation.setAddress(address);
+        userInformation.setidnumber(idnumber);
+        userInformation.setMobileNumber(mobileNumber);
+        userInformation.setRegion(region);
+        userInformation.setTitle(title);
+        userInformation.setTelephone(telephone);
 
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        if (title.isEmpty() || surname.isEmpty() || name.isEmpty()){
+            Toast.makeText(this, "Please fill all the required fields", Toast.LENGTH_LONG).show();
+        }else{
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
+            databaseReference.child(user.getUid()).child("User information").child(TransType).setValue(userInformation);
+
+            Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
 //
-        finish();
-        startActivity(new Intent(this, menu.class));
+            finish();
+            startActivity(new Intent(this, menu.class));
+        }
+
+    }
+
+    public void saveByRegion(){
+        String surname = editTextSurname.getText().toString();
+        String name = editTextName.getText().toString().trim();
+        databaseReference.child(TransType).setValue(surname+" "+name);
     }
 
     //method to show file chooser
@@ -236,10 +267,17 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == buttonAdduser){
-
-            Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, menu.class));
+            if (editTextTitle.getText()==null || TextUtils.isEmpty(editTextSurname.getText().toString()) ||
+                    TextUtils.isEmpty(editTextName.getText()) || TextUtils.isEmpty(editTextMobileNumber.getText()) ||
+                    TextUtils.isEmpty(editTextId.getText()) || TextUtils.isEmpty(editTextAddress.getText())){
+                Toast.makeText(this, "Please fill all the required fields", Toast.LENGTH_LONG).show();
+            }else{
+                saveUserInformation();
+                saveByRegion();
+                Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, menu.class));
+            }
 
         }
 
@@ -296,13 +334,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         }
         else
             Toast.makeText(MemberActivity.this, "Select id/passport", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TransType = parent.getItemAtPosition(position).toString();
-        ((TextView)spinner.getSelectedView()).setTextColor(Color.WHITE);
-        Log.d("Transaction Type", TransType);
     }
 
     @Override

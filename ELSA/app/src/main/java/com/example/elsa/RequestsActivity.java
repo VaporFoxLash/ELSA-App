@@ -44,6 +44,7 @@ public class RequestsActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    //download the pdf document
     public void Download(final String FName)
     {
 
@@ -65,6 +66,7 @@ public class RequestsActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    //get file from the server
     public void downloadFile(Context context, String fileName, String fileExtension, String destinationDirectory, String url) {
 
 

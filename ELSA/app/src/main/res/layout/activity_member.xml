@@ -90,6 +90,80 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="League"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="73dp"
+                        android:layout_height="wrap_content"
+                        android:text="PML"
+                        android:textColor="#ffffff"/>
+
+                    <CheckBox
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="PWL"
+                        android:textColor="#ffffff"/>
+
+                    <CheckBox
+                        android:layout_width="73dp"
+                        android:layout_height="wrap_content"
+                        android:text="YAL"
+                        android:textColor="#ffffff"/>
+
+                    <CheckBox
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="ELCSAMO"
+                        android:textColor="#ffffff"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <CheckBox
+                        android:layout_width="73dp"
+                        android:layout_height="wrap_content"
+                        android:text="AM"
+                        android:textColor="#ffffff"/>
+
+                    <CheckBox
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="AW"
+                        android:textColor="#ffffff"/>
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="YAL"
+                        android:textColor="#ffffff"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/editTextIDNumber"
@@ -162,14 +236,18 @@
                     android:layout_width="268dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ID/Passport" />
+                    android:text="ID/Passport"
+                    android:background="#0b61c2"
+                    android:layout_margin="5dp"/>
 
                 <Button
                     android:id="@+id/buttonUpload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Upload" />
+                    android:text="Upload"
+                    android:background="#0b61c2"
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
 
@@ -182,6 +260,7 @@
                 android:layout_marginBottom="13dp"
                 android:textAlignment="center"
                 android:layout_height="match_parent"
+                android:textColor="#ffffff"
                 android:layout_below="@id/linearLayout" />
 
             <Button

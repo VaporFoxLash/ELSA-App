@@ -15,7 +15,7 @@
         android:layout_marginLeft="105dp"
         android:layout_marginRight="105dp"
         android:layout_marginBottom="79dp"
-        android:background="@drawable/btstyle"
+        android:background="@drawable/ripple"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
         android:text="Join Us"
         android:gravity="center"

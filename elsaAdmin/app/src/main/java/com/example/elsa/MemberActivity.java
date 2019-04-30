@@ -51,7 +51,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
     private static final String[] paths = {"North", "West", "South", "East"};
     private String TransType;
 
-
     Uri SelectedFile;
 
     private Button buttonLogout;
@@ -59,7 +58,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView notification;
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, databaseReference_admin;
 
     private ProgressDialog progressDialog;
 
@@ -121,6 +120,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         databaseReference = database.getReference("Users");
+        databaseReference_admin = database.getReference("Admin");
 
         progressDialog = new ProgressDialog(this);
 
@@ -170,9 +170,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         String mobileNumber = editTextMobileNumber.getText().toString().trim();
         String region = TransType;
 
-//        String title, String surname, String name, String IDNumber,
-//                String mobileNumber, String telephone, String address, String region
-
         final UserInformation userInformation = new UserInformation();
         userInformation.setSurname(surname);
         userInformation.setName(name);
@@ -193,10 +190,13 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(new Intent(this, menu.class));
     }
 
+
+    //save region
     public void saveByRegion(){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
         String surname = editTextSurname.getText().toString();
         String name = editTextName.getText().toString().trim();
-        databaseReference.child(TransType).child(name).setValue(surname+" "+name);
+        databaseReference_admin.child(user.getUid()).setValue(TransType); //the admin field in the database
     }
 
     //method to show file chooser
@@ -253,21 +253,23 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
                         progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                     }
                 });
-//        progressDialog.dismiss();
     }
 
 
 
     @Override
     public void onClick(View view) {
+        //sqve user information
         if (view == buttonAdduser){
-            saveUserInformation();
+            saveUserInformation();//save the user information under Users field in the database
+            saveByRegion(); //save the admin so that they can view the users of the same region as them
             Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
             finish();
             startActivity(new Intent(this, menu.class));
 
         }
 
+        //get file from the device
         if (view == buttonChoose){
             selectFile();
             if (ContextCompat.checkSelfPermission(MemberActivity.this,
@@ -281,6 +283,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
 
+        //upload the file
         if (view == buttonUpload){
             if (SelectedFile!=null) {
                 Toast.makeText(MemberActivity.this, "Uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -291,18 +294,20 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //request permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+        //if selection succeeded
         if (requestCode==9 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
             selectFile();
         }
-        else
+        else //if not the ask the user to provide permissions
             Toast.makeText(MemberActivity.this, "Please provide permission...", Toast.LENGTH_SHORT).show();
     }
 
-    private void selectFile() {
 
+    //get the pdf file from the file manager
+    private void selectFile() {
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -325,6 +330,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        Log.i("Nothing Selected", "Select transaction type");
+        Log.i("Nothing Selected", "Select transaction type");   //if nothing was selected, show message
     }
 }

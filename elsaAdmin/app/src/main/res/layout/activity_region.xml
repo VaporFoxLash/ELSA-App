@@ -19,12 +19,41 @@
         <!--android:text="Sign up requests"-->
         <!--android:textAlignment="center"-->
         <!--android:textColor="#ffffff" />-->
-
-    <ListView
-        android:id="@+id/listViewUsers"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:outlineAmbientShadowColor="#1874ec"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/TxtRegionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Region members"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textColor="#2165ed"
+            android:background="#cecacb"/>
 
-    </ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:outlineSpotShadowColor="#2c5261">
+
+            <ListView
+                android:id="@+id/listViewUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </RelativeLayout>

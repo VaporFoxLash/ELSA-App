@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         buttonRegister.setOnClickListener(this);
         buttonSignin.setOnClickListener(this);
+
     }
 
     private void registerUser() {

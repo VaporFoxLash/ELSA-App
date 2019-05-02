@@ -4,49 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RequestsActivity"
-    android:background="@drawable/backgall">
+    tools:context=".RequestsActivity">
 
-    <Button
-        android:id="@+id/Membership"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="338dp"
-        android:background="@drawable/ripple"
-        android:gravity="center"
-        android:text="Membership"
-        android:textAlignment="center"
-        android:textColor="#ffffff" />
+        android:layout_margin="8dp"
+        android:outlineAmbientShadowColor="#1874ec"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/TxtRegionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Member requests"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textColor="#2165ed"
+            android:background="#cecacb"/>
 
-    <Button
-        android:id="@+id/Constitution"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="251dp"
-        android:background="@drawable/ripple"
-        android:gravity="center"
-        android:text="Constitution"
-        android:textAlignment="center"
-        android:textColor="#ffffff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:outlineSpotShadowColor="#2c5261">
 
-    <Button
-        android:id="@+id/year_plan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="166dp"
-        android:background="@drawable/ripple"
-        android:gravity="center"
-        android:text="year plan"
-        android:textAlignment="center"
-        android:textColor="#ffffff" />
+            <ListView
+                android:id="@+id/listViewUserRequests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

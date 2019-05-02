@@ -58,7 +58,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView notification;
 
-    private DatabaseReference databaseReference, databaseReference_admin;
+    private DatabaseReference databaseReference, databaseReference_admin, databaseReference_req;
 
     private ProgressDialog progressDialog;
 
@@ -119,8 +119,9 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        databaseReference = database.getReference("Users");
+        databaseReference = database.getReference("Requests");
         databaseReference_admin = database.getReference("Admin");
+        databaseReference_req = database.getReference("Region requests");
 
         progressDialog = new ProgressDialog(this);
 
@@ -182,7 +183,9 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).child("User information").child(TransType).setValue(userInformation);
+        if (user != null) {
+            databaseReference.child(TransType).child(user.getUid()).child("User information").setValue(userInformation);
+        }
 
         Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
 //
@@ -194,18 +197,20 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
     //save region
     public void saveByRegion(){
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        String surname = editTextSurname.getText().toString();
-        String name = editTextName.getText().toString().trim();
+//        String surname = editTextSurname.getText().toString();
+//        String name = editTextName.getText().toString().trim();
+
         databaseReference_admin.child(user.getUid()).setValue(TransType); //the admin field in the database
+        databaseReference_req.child(TransType).setValue(user.getUid());
     }
 
     //method to show file chooser
-    private void showFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*|application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-    }
+//    private void showFileChooser() {
+//        Intent intent = new Intent();
+//        intent.setType("image/*|application/pdf");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+//    }
 
     //Uload the file
     private void uploadFile(Uri uri) {

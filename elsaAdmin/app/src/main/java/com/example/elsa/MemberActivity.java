@@ -2,6 +2,7 @@ package com.example.elsa;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -51,6 +52,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
     private static final String[] paths = {"North", "West", "South", "East"};
     private String TransType;
 
+
     Uri SelectedFile;
 
     private Button buttonLogout;
@@ -58,7 +60,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView notification;
 
-    private DatabaseReference databaseReference, databaseReference_admin, databaseReference_req;
+    private DatabaseReference databaseReference, requestRef;
 
     private ProgressDialog progressDialog;
 
@@ -119,10 +121,8 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        databaseReference = database.getReference("Requests");
-        databaseReference_admin = database.getReference("Admin");
-        databaseReference_req = database.getReference("Region requests");
-
+        databaseReference = database.getReference("Users");
+        requestRef = database.getReference("Requests");
         progressDialog = new ProgressDialog(this);
 
 
@@ -177,40 +177,38 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         userInformation.setAddress(address);
         userInformation.setidnumber(idnumber);
         userInformation.setMobileNumber(mobileNumber);
-        userInformation.setRegion(TransType);
+        userInformation.setRegion(region);
         userInformation.setTitle(title);
         userInformation.setTelephone(telephone);
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (title.isEmpty() || surname.isEmpty() || name.isEmpty()){
+            Toast.makeText(this, "Please fill all the required fields", Toast.LENGTH_LONG).show();
+        }else{
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if (user != null) {
-            databaseReference.child(TransType).child(user.getUid()).child("User information").setValue(userInformation);
+            databaseReference.child(user.getUid()).child("User information").setValue(userInformation);
+            requestRef.child(user.getUid()).child("User information").setValue(userInformation);
+
+            Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(this, menu.class));
         }
 
-        Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
-//
-        finish();
-        startActivity(new Intent(this, menu.class));
     }
 
-
-    //save region
     public void saveByRegion(){
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        String surname = editTextSurname.getText().toString();
-//        String name = editTextName.getText().toString().trim();
-
-        databaseReference_admin.child(user.getUid()).setValue(TransType); //the admin field in the database
-        databaseReference_req.child(TransType).setValue(user.getUid());
+        String surname = editTextSurname.getText().toString();
+        String name = editTextName.getText().toString().trim();
+        databaseReference.child(TransType).setValue(surname+" "+name);
     }
 
     //method to show file chooser
-//    private void showFileChooser() {
-//        Intent intent = new Intent();
-//        intent.setType("image/*|application/pdf");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-//    }
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*|application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
 
     //Uload the file
     private void uploadFile(Uri uri) {
@@ -228,7 +226,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         progressDialog.dismiss();
-
                         //and displaying a success toast
                         Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
                     }
@@ -247,10 +244,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
                         //Track the progress
-
-
                         //calculating progress percentage
                         double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
@@ -264,17 +258,21 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        //sqve user information
         if (view == buttonAdduser){
-            saveUserInformation();//save the user information under Users field in the database
-            saveByRegion(); //save the admin so that they can view the users of the same region as them
-            Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, menu.class));
+            if (editTextTitle.getText()==null || TextUtils.isEmpty(editTextSurname.getText().toString()) ||
+                    TextUtils.isEmpty(editTextName.getText()) || TextUtils.isEmpty(editTextMobileNumber.getText()) ||
+                    TextUtils.isEmpty(editTextId.getText()) || TextUtils.isEmpty(editTextAddress.getText())){
+                Toast.makeText(this, "Please fill all the required fields", Toast.LENGTH_LONG).show();
+            }else{
+                saveUserInformation();
+//                saveByRegion();
+                Toast.makeText(this, "Information saved...", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, menu.class));
+            }
 
         }
 
-        //get file from the device
         if (view == buttonChoose){
             selectFile();
             if (ContextCompat.checkSelfPermission(MemberActivity.this,
@@ -288,7 +286,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
 
-        //upload the file
         if (view == buttonUpload){
             if (SelectedFile!=null) {
                 Toast.makeText(MemberActivity.this, "Uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -299,20 +296,18 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    //request permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //if selection succeeded
+
         if (requestCode==9 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
             selectFile();
         }
-        else //if not the ask the user to provide permissions
+        else
             Toast.makeText(MemberActivity.this, "Please provide permission...", Toast.LENGTH_SHORT).show();
     }
 
-
-    //get the pdf file from the file manager
     private void selectFile() {
+
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -335,6 +330,6 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        Log.i("Nothing Selected", "Select transaction type");   //if nothing was selected, show message
+        Log.i("Nothing Selected", "Select transaction type");
     }
 }

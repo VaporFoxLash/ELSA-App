@@ -17,8 +17,9 @@
         android:label="elsa-admin"
         android:roundIcon="@drawable/backg"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +44,8 @@
         </provider>
 
         <activity android:name=".ImageActivity" />
-        <activity android:name=".RegionActivity"></activity>
+        <activity android:name=".RegionActivity" />
+        <activity android:name=".MemberProfileActivity"></activity>
     </application>
 
 </manifest>

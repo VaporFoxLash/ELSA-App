@@ -7,11 +7,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.sql.BatchUpdateException;
 
 public class menu extends AppCompatActivity implements View.OnClickListener{
 
-    Button bt_member, bt_requests, bt_events;
+    Button bt_member, bt_requests, bt_events, bt_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
         bt_events.setOnClickListener(this);
         bt_requests = (Button) findViewById(R.id.request);
         bt_requests.setOnClickListener(this);
+        bt_logout = findViewById(R.id.button_logout);
+        bt_logout.setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +42,11 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
 
         if (v == bt_requests){
             startActivity(new Intent(this, RequestsActivity.class));
+        }
+        if (v == bt_logout){
+            FirebaseAuth.getInstance().signOut();
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }

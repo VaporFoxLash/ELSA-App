@@ -43,17 +43,56 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="false"
-            android:outlineSpotShadowColor="#2c5261">
+            android:outlineSpotShadowColor="#2c5261"
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/listViewUsers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_height="473dp"
+                android:layout_gravity="center"
+                android:layout_weight="1">
 
             </ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_re_logout"
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textFontWeight="1"
+                    android:textAllCaps="false"
+                    android:textColor="#1357e9"
+                    android:text="Log out" />
+
+                <Button
+                    android:id="@+id/bt_re_home"
+                    android:layout_width="145dp"
+                    android:textStyle="bold"
+                    android:textFontWeight="1"
+                    android:textAllCaps="false"
+                    android:textColor="#1357e9"
+                    android:layout_height="wrap_content"
+                    android:text="Home" />
+
+                <Button
+                    android:id="@+id/bt_re_posts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textFontWeight="1"
+                    android:textAllCaps="false"
+                    android:textColor="#1357e9"
+                    android:text="Events" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 
 
 </RelativeLayout>
